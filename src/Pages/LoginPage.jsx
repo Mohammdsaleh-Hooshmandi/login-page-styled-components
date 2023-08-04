@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import { Fragment, useState } from "react";
 
 import EmailInput from "../Components/EmailInput";
 import PasswordInput from "../Components/PasswordInput";
 import Button from "../Components/Button";
+import Spinner from "../Components/Spinner";
 
 const Wrapper = styled.div`
     width: 100%;
@@ -64,14 +66,28 @@ const Contents = styled.div`
 `;
 
 function LoginPage() {
+    const [showSpinner, setShowSpinner] = useState(false);
+
+    function submitHandler(event) {
+        event.preventDefault();
+        setShowSpinner(true);
+    }
+
     return (
         <Wrapper>
             <h1>Login Page</h1>
 
-            <ContentsWrapper>
+            <ContentsWrapper onSubmit={submitHandler}>
                 <FromWrapper>
-                    <EmailInput />
-                    <PasswordInput />
+                    {
+                        showSpinner ? <Spinner /> :
+                        <Fragment>
+                            <EmailInput />
+                            <PasswordInput />
+                        </Fragment>
+                    }
+                    
+                    
 
                     <Button>
                         Login
