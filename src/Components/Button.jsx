@@ -1,14 +1,28 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 const Button = styled.button`
-    background-color: #f8049c;
+    
     color: white;
-    font-weight: bold;
+    
     font-size: 2rem;
-    padding: 1.5rem 30%;
-    border-radius: 1rem;
+    
+    
     cursor: pointer;
     margin-top: 1rem;
+
+    ${props =>  props.$primary ?
+        css`
+            background-color: #fdd54f;
+            padding: .5rem 30%;
+            border-radius: .5rem;
+        `
+        :
+        css`
+            background-color: #f8049c;
+            padding: 1.5rem 30%;
+            border-radius: 1rem;
+            font-weight: bold;
+    `}
 
     &:disabled {
         background-color: #ccc;

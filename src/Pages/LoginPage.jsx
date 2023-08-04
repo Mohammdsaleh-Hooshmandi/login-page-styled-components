@@ -40,6 +40,12 @@ const FromWrapper = styled.form`
     flex-direction: column;
     align-items: center;
 
+    h3 {
+        margin-top: 1rem;
+        font-size: 2rem;
+        font-family: "Open Sans";
+    }
+
     @media (max-width: 950px) {
         width: 100%;
     }
@@ -81,17 +87,23 @@ function LoginPage() {
                 <FromWrapper>
                     {
                         showSpinner ? <Spinner /> :
-                        <Fragment>
-                            <EmailInput />
-                            <PasswordInput />
-                        </Fragment>
+                            <Fragment>
+                                <EmailInput />
+                                <PasswordInput />
+                            </Fragment>
                     }
-                    
-                    
-
-                    <Button>
+                    <Button disabled={showSpinner}>
                         Login
                     </Button>
+                    {
+                        !showSpinner &&
+                        <Fragment>
+                            <h3>or</h3>
+                            <Button $primary>
+                                Register
+                            </Button>
+                        </Fragment>
+                    }
                 </FromWrapper>
 
                 <Contents>
